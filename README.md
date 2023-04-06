@@ -82,9 +82,9 @@ HAVING COUNT(distinct author) = 1 AND COUNT(*) = 2
             <tr> <td> BTC </td> <td> USD </td> <td> 1000.00 </td> <td> Курс перевода BTC в USD </td> </tr>
             <tr> <td> BTC </td> <td> USD </td> <td> 1.00 </td> <td> Ошибка: Minimum exchange rate is ... BTC </td> </tr>
             <tr> <td> USD </td> <td> BTC </td> <td> 0.001 </td> <td> Ошибка: Minimum exchange rate is 0.01 USD </td> </tr>
-            <tr> <td> UUU </td> <td> BTC </td> <td> 0.001 </td> <td> Ошибка: Invalid currencies </td> </tr>
-            <tr> <td> USD </td> <td> USD </td> <td> 0.001 </td> <td> Ошибка: Invalid currencies </td> </tr>
-            <tr> <td> BTC </td> <td> BTC </td> <td> 0.001 </td> <td> Ошибка: Invalid currencies </td> </tr>            
+            <tr> <td> UUU </td> <td> BTC </td> <td> 1.00 </td> <td> Ошибка: Invalid currencies </td> </tr>
+            <tr> <td> USD </td> <td> USD </td> <td> 1.00 </td> <td> Ошибка: Invalid currencies </td> </tr>
+            <tr> <td> BTC </td> <td> BTC </td> <td> 1000.00 </td> <td> Ошибка: Invalid currencies </td> </tr>            
         </table>
         Напоминаю, что все функции должны возвращать ответы только в формате JSON.
     </p>
