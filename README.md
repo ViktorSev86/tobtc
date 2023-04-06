@@ -1,233 +1,78 @@
 <p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h1 align="center">JSON API сервис для работы с курсами обмена валют для биткоина (BTC) </h1>
+    <br>
+    <h4 align="center">На языке php 8 с использованием фреймворка yii2 с помощью Docker</h4>
+    <br>
+    <h3 align="center">Инструкция по развёртыванию и тестированию</h3>
+    <br>
     <br>
 </p>
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
-------------
-
-The minimum requirement by this project template that your Web server supports PHP 5.6.0.
-
-
-INSTALLATION
-------------
-
-### Install via Composer
-
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-composer create-project --prefer-dist yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install with Docker
-
-Update your vendor packages
-
-    docker-compose run --rm php composer update --prefer-dist
-    
-Run the installation triggers (creating cookie validation code)
-
-    docker-compose run --rm php composer install    
-    
-Start the container
-
-    docker-compose up -d
-    
-You can then access the application through the following URL:
-
-    http://127.0.0.1:8000
-
-**NOTES:** 
-- Minimum required Docker engine version `17.04` for development (see [Performance tuning for volume mounts](https://docs.docker.com/docker-for-mac/osxfs-caching/))
-- The default configuration uses a host-volume in your home directory `.docker-composer` for composer caches
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
-    'charset' => 'utf8',
-];
-```
-
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
-
-
-TESTING
--------
-
-Tests are located in `tests` directory. They are developed with [Codeception PHP Testing Framework](http://codeception.com/).
-By default, there are 3 test suites:
-
-- `unit`
-- `functional`
-- `acceptance`
-
-Tests can be executed by running
-
-```
-vendor/bin/codecept run
-```
-
-The command above will execute unit and functional tests. Unit tests are testing the system components, while functional
-tests are for testing user interaction. Acceptance tests are disabled by default as they require additional setup since
-they perform testing in real browser. 
-
-
-### Running  acceptance tests
-
-To execute acceptance tests do the following:  
-
-1. Rename `tests/acceptance.suite.yml.example` to `tests/acceptance.suite.yml` to enable suite configuration
-
-2. Replace `codeception/base` package in `composer.json` with `codeception/codeception` to install full-featured
-   version of Codeception
-
-3. Update dependencies with Composer 
-
-    ```
-    composer update  
-    ```
-
-4. Download [Selenium Server](http://www.seleniumhq.org/download/) and launch it:
-
-    ```
-    java -jar ~/selenium-server-standalone-x.xx.x.jar
-    ```
-
-    In case of using Selenium Server 3.0 with Firefox browser since v48 or Google Chrome since v53 you must download [GeckoDriver](https://github.com/mozilla/geckodriver/releases) or [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/downloads) and launch Selenium with it:
-
-    ```
-    # for Firefox
-    java -jar -Dwebdriver.gecko.driver=~/geckodriver ~/selenium-server-standalone-3.xx.x.jar
-    
-    # for Google Chrome
-    java -jar -Dwebdriver.chrome.driver=~/chromedriver ~/selenium-server-standalone-3.xx.x.jar
-    ``` 
-    
-    As an alternative way you can use already configured Docker container with older versions of Selenium and Firefox:
-    
-    ```
-    docker run --net=host selenium/standalone-firefox:2.53.0
-    ```
-
-5. (Optional) Create `yii2basic_test` database and update it by applying migrations if you have them.
-
-   ```
-   tests/bin/yii migrate
-   ```
-
-   The database configuration can be found at `config/test_db.php`.
-
-
-6. Start web server:
-
-    ```
-    tests/bin/yii serve
-    ```
-
-7. Now you can run all available tests
-
-   ```
-   # run all available tests
-   vendor/bin/codecept run
-
-   # run acceptance tests
-   vendor/bin/codecept run acceptance
-
-   # run only unit and functional tests
-   vendor/bin/codecept run unit,functional
-   ```
-
-### Code coverage support
-
-By default, code coverage is disabled in `codeception.yml` configuration file, you should uncomment needed rows to be able
-to collect code coverage. You can run your tests and collect coverage with the following command:
-
-```
-#collect coverage for all tests
-vendor/bin/codecept run --coverage --coverage-html --coverage-xml
-
-#collect coverage only for unit tests
-vendor/bin/codecept run unit --coverage --coverage-html --coverage-xml
-
-#collect coverage for unit and functional tests
-vendor/bin/codecept run functional,unit --coverage --coverage-html --coverage-xml
-```
-
-You can see code coverage output under the `tests/_output` directory.
+<p>
+<br>
+<h2>1. Клонирование репозитория</h2>
+<br>
+    <p> Скачиваем архив из данного репозитория и распаковываем или клонируем данный репозиторий на свой локальный компьютер, выполнив команду в терминале:
+        <p><code> git clone </code></p>
+        <p>Далее выполняем команду:</p>
+        <p><code> composer update </code></p>
+    </p>
+<br>
+<br>
+<h2>2. Развёртывание</h2>
+<br>
+    <p> 2.1 Устанавливаем Docker на свой локальный копьютер, если он ранее не был установлен.</p>
+    <p> 2.2 Настройки Docker можно найти на официальном сайте  https://www.docker.com/products/docker-desktop </p>
+    <p> 2.3 В терминале на папке с склонированным репозиторием выполняем команду:
+        <p><code> docker-compose up -d </code></p>       
+        Эта команда скачает все необходимые зависимости, поднимет контейнер на порту 8000, и API будет готов к работе.
+    </p>
+    <h4> Теперь API доступен по адресу http://localhost:8000/.</h4>
+<br>
+<br>
+<h2>3. Тестирование</h2>
+<br>
+    <p> Чтобы проверить, что CurrencyController доступен, вводим в строку браузера http://localhost:8000/index.php?r=currency/index</p>
+    <p> Чтобы проверить, функция actionRates доступна, вводим в строку браузера http://localhost:8000/api?method=GET&r=currency/rates. На экране должно появиться {"status":"error","code":403,"message":"Invalid token"}</p>
+    <br>
+    <h6> Для тестирования сайта можно использовать любое специализированное приложение, удобное тестировщику, которое будет направлять запросы api и получать ответы в формате JSON (например, PHPUnit и/или Postman).</h6>
+    <br>
+    <p> 3.1 Для тестирования метода actionRates необходимо выполнить следующий HTTP-запрос:
+            http://localhost:8000/api?method=GET&r=currency/rates 
+            Заголовок запроса должен содержать "Authorization: Bearer YOUR_TOKEN_HERE"
+            В таком виде функция должна вернуть следующий ответ в формате json:
+            {"status":"error","code":403,"message":"Invalid token"}
+            Если YOUR_TOKEN_HERE заменить на 64 единицы, функция должна вернуть ответ в формате json со статусом success, кодом 200 и тело запроса, содержащее текущие курсы всех валют к биткоину.
+    </p>
+    <br>
+    <p> 3.2 Для тестирования функции currencyConvert необходимо выполнить следующий HTTP-запрос:
+        <p><code> http://localhost:8000/api?method=GET&r=currency/rates&currency_from=USD&currency_to=BTC&value=1.00 </code></p>
+        Проверку авторизации выполняем аналогично предыдущему пункту.
+        Для проверки значений в запросе подставляем значения параметров currency_from, currency_to, value на перечисленные в таблице:
+        <table>
+            <tr> <th> currency_from = </th> <th> currency_to = </th> <th> value = </th> <th> Результат </th> </tr>
+            <tr> <td> USD </td> <td> BTC </td> <td> 1.00 </td> <td> Курс перевода USD в BTC </td> </tr>
+            <tr> <td> BTC </td> <td> USD </td> <td> 1000.00 </td> <td> Курс перевода BTC в USD </td> </tr>
+            <tr> <td> BTC </td> <td> USD </td> <td> 1.00 </td> <td> Ошибка: Minimum exchange rate is ... BTC </td> </tr>
+            <tr> <td> USD </td> <td> BTC </td> <td> 0.001 </td> <td> Ошибка: Minimum exchange rate is 0.01 USD </td> </tr>
+            <tr> <td> UUU </td> <td> BTC </td> <td> 0.001 </td> <td> Ошибка: Invalid currencies </td> </tr>
+            <tr> <td> USD </td> <td> USD </td> <td> 0.001 </td> <td> Ошибка: Invalid currencies </td> </tr>
+            <tr> <td> BTC </td> <td> BTC </td> <td> 0.001 </td> <td> Ошибка: Invalid currencies </td> </tr>            
+        </table>
+        Напоминаю, что все функции должны возвращать ответы только в формате JSON.
+    </p>
+    <p>Для написания тестов с помощью PHPUnit необходимо будет создать отдельный тестовый класс и методы для проверки каждого метода API.</p>
+    <br>
+    <p>Пример тестового класса для проверки методов API вы можете найти в документации PHPUnit (https://phpunit.readthedocs.io/en/9.5/writing-tests-for-phpunit.html).</p>
+    <br>
+    <p>Для тестирования методов API с помощью Postman нужно будет создать коллекцию запросов, каждый из которых будет соответствовать одному методу API. В каждом запросе нужно будет указать параметры, отправляемые на сервер, и ожидаемый результат.</p>
+    <br>
+    <p>Пример коллекции запросов для тестирования API можно найти в документации Postman (https://learning.postman.com/docs/running-collections/intro-to-collection-runs/).</p>
+    <br>
+    <p>Также для автоматизации тестирования API можно использовать инструменты Continuous Integration, такие как Travis-CI или CircleCI. Эти инструменты позволяют автоматически запускать тесты после каждого коммита в репозиторий и оповещать разработчиков в случае возникновения ошибок.</p>
+    <br>
+    <h4>Важно убедиться, что тесты охватывают все возможные сценарии использования API и проверяют корректность работы каждого метода, а также учитывают все требования к API, указанные в задании. </h4>
+    <br>
+    <br>
+    <br>
+</p>
