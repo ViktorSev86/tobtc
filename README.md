@@ -1,4 +1,31 @@
 <p align="center">
+    <h1 align="center">РЕШЕНИЕ ЗАДАНИЯ 1</h1>
+    <br>
+    <h1 align="center">SQL-запрос</h1>
+    <br>
+    <p><code> 
+SELECT 
+  user_id AS ID,
+​  CONCAT (first_name, " ", last_name) AS Name,
+  min(author) AS Author,
+​  GROUP_CONCAT(name SEPARATOR ", ") AS Books
+FROM user
+​ JOIN user_books ON user.id = user_books.user_id
+​ JOIN book ON book.id = user_books.book_id
+WHERE DATEDIFF(return_date, get_date) <= 14 AND TIMESTAMPDIFF(YEAR, birthday, NOW()) BETWEEN 7 AND 17
+GROUP BY 1
+HAVING COUNT(distinct author) = 1 AND COUNT(*) = 2
+     </code></p>
+    <br>
+    <br>
+    <br>
+    <br>
+</p>
+
+
+<p align="center">
+    <h1 align="center">РЕШЕНИЕ ЗАДАНИЯ 2</h1>
+    <br>
     <h1 align="center">JSON API сервис для работы с курсами обмена валют для биткоина (BTC) </h1>
     <br>
     <h4 align="center">На языке php 8 с использованием фреймворка yii2 с помощью Docker</h4>
